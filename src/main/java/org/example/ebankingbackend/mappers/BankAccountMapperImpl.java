@@ -1,8 +1,10 @@
 package org.example.ebankingbackend.mappers;
 
+import org.example.ebankingbackend.dtos.AccountOperationDTO;
 import org.example.ebankingbackend.dtos.CurrentBankAccountDTO;
 import org.example.ebankingbackend.dtos.CustomerDto;
 import org.example.ebankingbackend.dtos.SavingBankAccountDTO;
+import org.example.ebankingbackend.entities.AccountOperation;
 import org.example.ebankingbackend.entities.CurrentAccount;
 import org.example.ebankingbackend.entities.Customer;
 import org.example.ebankingbackend.entities.SavingAccount;
@@ -51,6 +53,16 @@ public class BankAccountMapperImpl {
         return savingAccount;
     }
 
+    public AccountOperationDTO fromAccountOperation(AccountOperation accountOperation){
+        AccountOperationDTO accountOperationDTO = new AccountOperationDTO();
+        BeanUtils.copyProperties(accountOperation,accountOperationDTO);
+        return accountOperationDTO;
+    }
 
+    public AccountOperation fromAccountOperationDTO(AccountOperationDTO accountOperationDTO){
+        AccountOperation accountOperation = new AccountOperation();
+        BeanUtils.copyProperties(accountOperationDTO,accountOperation);
+        return accountOperation;
+    }
 
 }
