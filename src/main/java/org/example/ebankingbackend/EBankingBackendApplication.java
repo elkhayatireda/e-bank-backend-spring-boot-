@@ -1,5 +1,6 @@
 package org.example.ebankingbackend;
 
+import org.example.ebankingbackend.dtos.CustomerDto;
 import org.example.ebankingbackend.entities.*;
 import org.example.ebankingbackend.enums.AccountStatus;
 import org.example.ebankingbackend.enums.OperationType;
@@ -32,7 +33,7 @@ public class EBankingBackendApplication {
     CommandLineRunner commandLineRunner(BankAccountService bankAccountService) {
         return args -> {
             Stream.of("Reda", "Imane", "Mohamed").forEach(name -> {
-                Customer customer = new Customer();
+                CustomerDto customer = new CustomerDto();
                 customer.setName(name);
                 customer.setEmail(name + "@gmail.com");
                 bankAccountService.saveCustomer(customer);
