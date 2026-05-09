@@ -10,7 +10,7 @@ import java.util.List;
 @Data @AllArgsConstructor @NoArgsConstructor
 public class Customer {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id ;
+    private Long id ;
     private String name;
     private String email;
     @OneToMany(mappedBy = "customer")
