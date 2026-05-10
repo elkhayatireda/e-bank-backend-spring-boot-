@@ -45,8 +45,6 @@ public class EBankingBackendApplication {
                 try {
                     bankAccountService.saveCurrentBankAccount(Math.random()*90000, cust.getId() ,9000);
                     bankAccountService.saveSavingBankAccount(Math.random()*120000, cust.getId() ,5.5);
-
-
                 } catch (CustomerNotFoundException e) {
                     e.printStackTrace();
                 }

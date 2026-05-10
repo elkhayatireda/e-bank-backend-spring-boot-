@@ -9,6 +9,7 @@ import org.example.ebankingbackend.entities.BankAccount;
 import org.example.ebankingbackend.exceptions.BankAccountNotFoundException;
 import org.example.ebankingbackend.mappers.BankAccountMapperImpl;
 import org.example.ebankingbackend.services.BankAccountService;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -23,22 +24,26 @@ public class BankAccountRestController {
 
     // no need for pathvariable here
     @GetMapping("accounts/{accountId}")
+    @PreAuthorize("hasAuthority('ROLE_USER')")
     public BankAccountDTO getBankAccount(String accountId) throws BankAccountNotFoundException {
         return bankAccountService.getBankAccount(accountId);
     }
 
 
     @GetMapping("/accounts")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public List<BankAccountDTO> listBankAccountDTO(){
        return bankAccountService.bankAccountList();
     }
 
     @GetMapping("/accounts/{accountId}/operations")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public List<AccountOperationDTO> getHistory(@PathVariable String accountId){
         return bankAccountService.accountOperationDTOList(accountId);
     }
 
     @GetMapping("/accounts/{accountId}/pageOperations")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public AccountHistoryDTO  getAccountHistory(
             @PathVariable String accountId,
             @RequestParam(name = "page" , defaultValue = "0") int page ,
